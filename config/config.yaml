@@ -1,0 +1,60 @@
+project:
+  name: "thats-the-vibe"
+  version: "1.0.0"
+  seed: 42
+
+data:
+  fma_path: "./data/fma_large"
+  gtzan_path: "./data/gtzan"
+  chunk_duration: 10  # seconds
+  sample_rate: 16000
+  chunk_stride: 5  # seconds (50% overlap)
+  augmentation:
+    enabled: true
+    pitch_shift: [-2, 2]
+    time_stretch: [0.9, 1.1]
+    noise_factor: 0.001
+
+models:
+  mert:
+    model_name: "m-a-p/MERT-v1-95M"
+    embedding_dim: 768
+    trust_remote_code: true
+  clap:
+    model_name: "laion/clap"
+    embedding_dim: 512
+  optimization:
+    pca_dim: 128
+    quantization: "int8"
+
+search:
+  faiss:
+    index_type: "HNSW"
+    M: 16
+    ef_construction: 200
+    ef_search: [50, 100, 200]
+  milvus:
+    index_type: "IVF_PQ"
+    nlist: 4096
+    m: 16
+    nbits: 8
+    nprobe: [10, 20, 50]
+
+evaluation:
+  recall_k: [1, 5, 10, 50]
+  n_queries: 1000  # number of GTZAN tracks to use
+  split: 0.8  # train/val split for tuning
+
+iterations:
+  - name: "baseline"
+    model: "mert"
+    index: "faiss"
+    dim: 768
+  - name: "optimized"
+    model: "mert_pca"
+    index: "milvus"
+    dim: 128
+  - name: "multimodal"
+    model: "clap"
+    index: "milvus"
+    dim: 512
