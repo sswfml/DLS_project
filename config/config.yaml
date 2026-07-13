@@ -1,5 +1,5 @@
 project:
-  name: "thats-the-vibe"
+  name: "aura"
   version: "1.0.0"
   seed: 42
 
@@ -46,15 +46,25 @@ evaluation:
   split: 0.8  # train/val split for tuning
 
 iterations:
-  - name: "baseline"
+  - name: "iteration1_baseline"
     model: "mert"
     index: "faiss"
     dim: 768
-  - name: "optimized"
+  - name: "iteration2_optimized"
     model: "mert_pca"
     index: "milvus"
     dim: 128
-  - name: "multimodal"
+  - name: "iteration3_multimodal"
     model: "clap"
     index: "milvus"
     dim: 512
+
+app:
+  title: "AURA - Discover Music by Vibe"
+  theme: "dark"
+  max_results: 20
+  sample_queries:
+    - "upbeat acoustic folk with a melancholic undertone"
+    - "dark ambient drone music for studying"
+    - "funky 70s groove with a driving bassline"
+    - "ethereal female vocals with electronic production"
