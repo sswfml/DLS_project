@@ -22,7 +22,7 @@ def setup_environment():
 
 def run_experiments(all_iterations=True):
     """Run the experiments"""
-    from experiments.experiment_runner import ExperimentRunner
+    from experiments.experiment_runner import AURAExperimentRunner as ExperimentRunner
     
     runner = ExperimentRunner()
     

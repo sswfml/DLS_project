@@ -22,7 +22,7 @@ class MERTEncoder:
         self.model.eval()
         
         self.processor = AutoProcessor.from_pretrained(model_name, trust_remote_code=True)
-        self.sample_rate = 16000
+        self.sample_rate = 24000
         self.embedding_dim = 768
     
     @torch.no_grad()

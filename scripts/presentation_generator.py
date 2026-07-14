@@ -283,7 +283,7 @@ GitHub: [Link to repository]
     # Save slides as Markdown
     output_path = Path("presentation/slides.md")
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, 'w') as f:
+    with open(output_path, 'w', encoding='utf-8') as f:
         f.write("\n".join(slides))
 
     print(f"✅ Slides saved to {output_path}")

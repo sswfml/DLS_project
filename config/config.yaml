@@ -7,7 +7,7 @@ data:
   fma_path: "./data/fma_large"
   gtzan_path: "./data/gtzan"
   chunk_duration: 10  # seconds
-  sample_rate: 16000
+  sample_rate: 24000
   chunk_stride: 5  # seconds (50% overlap)
   augmentation:
     enabled: true
