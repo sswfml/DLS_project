@@ -24,7 +24,7 @@ The system uses **deep learning embeddings** from state-of-the-art music underst
 - **For Music Educators**: Find examples of specific musical concepts (e.g., "syncopated rhythm")
 
 ## 🏗️ System Architecture
-![AURA System Architecture](presentation/assets/full_architecture.png)
+![AURA System Architecture](assets/full_architecture.png)
 ## 📊 Dataset
 
 - **FMA (Free Music Archive) Medium**: ~25,000 tracks, sliced into 10-second chunks
