@@ -1,4 +1,4 @@
-# 🎵 "That's the Vibe" – Mood-Based Music Discovery
+# 🎵 AURA – Mood-Based Music Discovery
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -7,9 +7,11 @@
 
 ## 📖 Project Overview
 
-This project implements a **semantic music search engine** that retrieves tracks based on their acoustic "vibe" rather than metadata. Users can query using:
-- 🎵 **Audio snippets** (10 seconds of humming or a song)
+**AURA** is a semantic music search engine that retrieves tracks based on their acoustic **"aura"** – the emotional and sonic fingerprint of a song. Users can query using:
+
+- 🎵 **Audio snippets** (humming, 10-second clips)
 - 📝 **Text descriptions** (e.g., "upbeat acoustic folk with melancholic undertones")
+- 🎤 **Voice queries** (speak or hum into your microphone)
 
 The system uses **deep learning embeddings** from state-of-the-art music understanding models (MERT, CLAP) and evaluates multiple vector search strategies (FAISS-HNSW, Milvus-IVF-PQ) to find the optimal trade-off between speed, memory, and accuracy.
 
@@ -19,16 +21,15 @@ The system uses **deep learning embeddings** from state-of-the-art music underst
 - **For Music Therapists**: Curate emotionally resonant playlists
 - **For Casual Listeners**: Break recommendation bubbles and explore music by feeling
 - **For Game/Film Designers**: Source background music matching scene emotions
+- **For Music Educators**: Find examples of specific musical concepts (e.g., "syncopated rhythm")
 
 ## 🏗️ System Architecture
-
-![System Architecture](presentation/assets/architecture.png)
-
+![AURA System Architecture](assets/full_architecture.png)
 ## 📊 Dataset
 
-- **FMA (Free Music Archive) Large**: 106,000 tracks, sliced into 10-second chunks
+- **FMA (Free Music Archive) Medium**: ~25,000 tracks, sliced into 10-second chunks
 - **GTZAN**: 1,000 labeled tracks for validation
-- **Total**: ~150,000 chunks (augmented to 500,000+)
+- **Total chunks**: ~150,000 (augmented to 500,000+)
 - **Embeddings**: 768-dim from MERT model
 
 ## 🔬 Experimental Iterations

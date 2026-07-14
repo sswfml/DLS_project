@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Data
+data/
+*.wav
+*.mp3
+*.zip
+*.tar.gz
+*.pkl
+*.pt
+*.onnx
+
+# Experiments
+experiments/results/
+*.log
+*.json
+*.csv
+*.png
+*.svg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# MLflow
+mlruns/
+wandb/
+
+# Docker
+docker/data/
+docker/logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+config/local.yaml
+*.key
+*.pem
