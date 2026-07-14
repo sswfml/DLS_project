@@ -229,7 +229,7 @@ with col1:
     query = ""
     audio_data = None
     
-    if search_mode == " Text Description":
+    if search_mode == "Text Description":
         query = st.text_area(
         "Describe the music you're looking for:",
         placeholder="e.g., 'upbeat acoustic folk with a melancholic undertone'",  # ← FIXED
