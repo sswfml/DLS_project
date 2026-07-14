@@ -24,7 +24,7 @@ The system uses **deep learning embeddings** from state-of-the-art music underst
 - **For Music Educators**: Find examples of specific musical concepts (e.g., "syncopated rhythm")
 
 ## 🏗️ System Architecture
-
+```mermaid
 graph TB
     subgraph Input["🎵 User Input"]
         A1["Audio / Humming"]
