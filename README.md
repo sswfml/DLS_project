@@ -24,35 +24,52 @@ The system uses **deep learning embeddings** from state-of-the-art music underst
 - **For Music Educators**: Find examples of specific musical concepts (e.g., "syncopated rhythm")
 
 ## 🏗️ System Architecture
-┌─────────────────────────────────────────────────────────────────────┐
-│                           AURA SYSTEM                              │
-│                                                                     │
-│  ┌──────────┐    ┌─────────────┐    ┌─────────────────┐           │
-│  │  User     │    │  Query      │    │  Embedding      │           │
-│  │  Input    │───▶│  Processor  │───▶│  Generation     │           │
-│  │           │    │             │    │                 │           │
-│  │ • Audio   │    │ • Resample  │    │ • MERT (768d)   │           │
-│  │ • Text    │    │ • Chunk     │    │ • CLAP (512d)   │           │
-│  │ • Voice   │    │ • Pad/Trim  │    │ • PCA (128d)    │           │
-│  └──────────┘    └─────────────┘    └────────┬────────┘           │
-│                                               │                     │
-│                                               ▼                     │
-│  ┌────────────────────────────────────────────────────────────┐    │
-│  │               VECTOR DATABASE & INDEXING                   │    │
-│  │  ┌──────────────┐         ┌──────────────────────────┐    │    │
-│  │  │  FAISS-HNSW  │  OR     │  Milvus-IVF-PQ + Hybrid  │    │    │
-│  │  │  (Baseline)  │         │  (Optimized)             │    │    │
-│  │  └──────────────┘         └──────────────────────────┘    │    │
-│  └────────────────────────────────────────────────────────────┘    │
-│                                               │                     │
-│                                               ▼                     │
-│  ┌────────────────────────────────────────────────────────────┐    │
-│  │              RETRIEVED TRACKS + METADATA                  │    │
-│  │  • Title, Artist, Genre, Album                           │    │
-│  │  • Similarity Score                                      │    │
-│  │  • Play Preview                                          │    │
-│  └────────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────────┘
+
+graph TB
+    subgraph Input["🎵 User Input"]
+        A1["Audio / Humming"]
+        A2["Text Description"]
+        A3["Voice Query"]
+    end
+
+    subgraph Processing["⚙️ Query Processing"]
+        B1["Resample & Chunk"]
+        B2["Embedding Generation"]
+    end
+
+    subgraph Models["🧠 Models"]
+        C1["MERT (768d)"]
+        C2["CLAP (512d)"]
+        C3["PCA + Quantization (128d, int8)"]
+    end
+
+    subgraph Search["🔍 Vector Search"]
+        D1["FAISS-HNSW"]
+        D2["Milvus-IVF-PQ"]
+        D3["Hybrid Search (RRF)"]
+    end
+
+    subgraph Output["🎯 Results"]
+        E1["Retrieved Tracks"]
+        E2["Metadata + Scores"]
+    end
+
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    B1 --> B2
+    B2 --> C1
+    B2 --> C2
+    C1 --> C3
+    C2 --> D2
+    C3 --> D1
+    C3 --> D2
+    D1 --> E1
+    D2 --> E1
+    D1 --> E2
+    D2 --> E2
+    D3 --> E1
+    D3 --> E2
 
 ## 📊 Dataset
 
