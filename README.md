@@ -24,6 +24,35 @@ The system uses **deep learning embeddings** from state-of-the-art music underst
 - **For Music Educators**: Find examples of specific musical concepts (e.g., "syncopated rhythm")
 
 ## 🏗️ System Architecture
+┌─────────────────────────────────────────────────────────────────────┐
+│                           AURA SYSTEM                              │
+│                                                                     │
+│  ┌──────────┐    ┌─────────────┐    ┌─────────────────┐           │
+│  │  User     │    │  Query      │    │  Embedding      │           │
+│  │  Input    │───▶│  Processor  │───▶│  Generation     │           │
+│  │           │    │             │    │                 │           │
+│  │ • Audio   │    │ • Resample  │    │ • MERT (768d)   │           │
+│  │ • Text    │    │ • Chunk     │    │ • CLAP (512d)   │           │
+│  │ • Voice   │    │ • Pad/Trim  │    │ • PCA (128d)    │           │
+│  └──────────┘    └─────────────┘    └────────┬────────┘           │
+│                                               │                     │
+│                                               ▼                     │
+│  ┌────────────────────────────────────────────────────────────┐    │
+│  │               VECTOR DATABASE & INDEXING                   │    │
+│  │  ┌──────────────┐         ┌──────────────────────────┐    │    │
+│  │  │  FAISS-HNSW  │  OR     │  Milvus-IVF-PQ + Hybrid  │    │    │
+│  │  │  (Baseline)  │         │  (Optimized)             │    │    │
+│  │  └──────────────┘         └──────────────────────────┘    │    │
+│  └────────────────────────────────────────────────────────────┘    │
+│                                               │                     │
+│                                               ▼                     │
+│  ┌────────────────────────────────────────────────────────────┐    │
+│  │              RETRIEVED TRACKS + METADATA                  │    │
+│  │  • Title, Artist, Genre, Album                           │    │
+│  │  • Similarity Score                                      │    │
+│  │  • Play Preview                                          │    │
+│  └────────────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────────────┘
 
 ## 📊 Dataset
 
