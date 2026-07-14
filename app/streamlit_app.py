@@ -231,11 +231,11 @@ with col1:
     
     if search_mode == " Text Description":
         query = st.text_area(
-            "Describe the music you're looking for:",
-            placeholder="e.g., 'upbeat acoustic folk with a melancholic undertone'",
-            height=80,
-            value=st.session_state.get('query_text', '')
-        )
+        "Describe the music you're looking for:",
+        placeholder="e.g., 'upbeat acoustic folk with a melancholic undertone'",  # ← FIXED
+        height=80,
+        value=st.session_state.get('query_text', '')
+)
         
     else:  # Audio Upload
         audio_file = st.file_uploader(
