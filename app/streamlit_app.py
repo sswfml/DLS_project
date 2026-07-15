@@ -270,7 +270,7 @@ with col2:
         st.session_state['run_search'] = False
         
         # Determine query
-        if search_mode == " Text Description":
+        if search_mode == "Text Description":
             if query:
                 with st.spinner(" Searching AURA..."):
                     results = search_by_text(query, k_results)
